@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html>
+<body>
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fessionic - Designed by Intelligence. Worn by Humans. Premium futuristic fashion.">
+    <meta name="keywords" content="fashion, AI fashion, futuristic clothing, women's fashion, men's fashion">
+    <title>Fessionic — Designed by Intelligence. Worn by Humans.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --graphite: #1a1a1f;
+            --graphite-light: #2a2a32;
+            --graphite-lighter: #3a3a45;
+            --ivory: #f5f0e8;
+            --soft-white: #faf8f5;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8d4;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --peach: #ffb4a2;
+            --rose: #e8a0bf;
+            --rose-dim: #c47e9e;
+            --warm-gradient: linear-gradient(135deg, #ffb4a2 0%, #e8a0bf 100%);
+            --holo-gradient: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(232,160,191,0.1), rgba(255,180,162,0.1));
+            --glass-bg: rgba(26, 26, 31, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--black);
+            color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--graphite-lighter); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(0px);
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.7rem 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--ivory) 0%, var(--peach) 50%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), transparent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Space Grotesk', sans-serif;
+            color: rgba(245, 240, 232, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 0.3rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--cyan);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--ivory);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--cyan) !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 25px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: rgba(0, 229, 255, 0.1);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--ivory);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.5s forwards;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--peach) 50%, var(--rose) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: rgba(245, 240, 232, 0.65);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.7s forwards;
+        }
+
+        .hero-tagline em {
+            color: var(--peach);
+            font-style: italic;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.9s forwards;
+        }
+
+        .btn-primary {
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-dim) 100%);
+            color: var(--black);
+            border: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 229, 255, 0.35);
+        }
+
+        .btn-secondary {
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--ivory);
+            border: 1px solid rgba(245, 240, 232, 0.2);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--peach);
+            color: var(--peach);
+            box-shadow: 0 0 20px rgba(255, 180, 162, 0.1);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 1.2s forwards;
+        }
+
+        .hero-scroll span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.3);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--cyan), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        /* ===== COLLECTIONS ===== */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-eyebrow {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .section-eyebrow::before,
+        .section-eyebrow::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--cyan);
+            opacity: 0.4;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            color: rgba(245, 240, 232, 0.5);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Collection Grid */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .collection-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            group: true;
+        }
+
+        .collection-card.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .collection-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collection-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 50%, transparent 100%);
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover .collection-img {
+            transform: scale(1.05);
+        }
+
+        .collection-card:hover::before {
+            background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 40%, transparent 100%);
+        }
+
+        .collection-card:hover .collection-info {
+            transform: translateY(-8px);
+        }
+
+        .collection-card:hover .collection-explore {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .collection-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collection-tag {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .collection-count {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.4);
+        }
+
+        .collection-explore {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--peach);
+            margin-top: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collection-explore .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-card:hover .collection-explore .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Holographic border on hover */
+        .collection-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            z-index: 3;
+            pointer-events: none;
+            transition: border-color 0.4s ease;
+        }
+
+        .collection-card:hover::after {
+            border-color: rgba(0, 229, 255, 0.2);
+            box-shadow: inset 0 0 30px rgba(0, 229, 255, 0.05);
+        }
+
+        /* ===== WOMEN'S FASHION FOCUS ===== */
+        .women-focus {
+            position: relative;
+            padding: 8rem 2rem;
+            overflow: hidden;
+        }
+
+        .women-focus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(232, 160, 191, 0.03) 0%, transparent 50%, rgba(0, 229, 255, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        .women-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .women-imagery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .women-img-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .women-img-wrapper:nth-child(2) {
+            margin-top: 3rem;
+        }
+
+        .women-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+            transition: transform 0.6s ease;
+        }
+
+        .women-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .women-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(232, 160, 191, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .women-content {
+            padding: 2rem 0;
+        }
+
+        .women-content .section-eyebrow {
+            justify-content: flex-start;
+            color: var(--rose);
+        }
+
+        .women-content .section-eyebrow::before {
+            background: var(--rose);
+        }
+
+        .women-content .section-eyebrow::after {
+            display: none;
+        }
+
+        .women-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .women-content h2 .warm {
+            color: var(--peach);
+        }
+
+        .women-content p {
+            color: rgba(245, 240, 232, 0.6);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .emotion-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .emotion-tag {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            background: rgba(232, 160, 191, 0.08);
+            border: 1px solid rgba(232, 160, 191, 0.15);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--rose);
+            transition: all 0.3s ease;
+        }
+
+        .emotion-tag:hover {
+            background: rgba(232, 160, 191, 0.15);
+            border-color: var(--rose);
+            transform: translateY(-2px);
+        }
+
+        /* ===== FEATURED PRODUCTS ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 229, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 229, 255, 0.05);
+        }
+
+        .product-img-container {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: var(--graphite);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.35rem 0.8rem;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .product-wishlist:hover {
+            background: rgba(232, 160, 191, 0.2);
+            border-color: var(--rose);
+        }
+
+        .product-wishlist.active {
+            background: rgba(232, 160, 191, 0.3);
+            border-color: var(--rose);
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.35);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--ivory);
+        }
+
+        .product-desc {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.4);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ivory);
+        }
+
+        .product-price .original {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.3);
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 0.5rem;
+        }
+
+        .product-add {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .product-add:hover {
+            background: var(--cyan);
+            color: var(--black);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+
+        /* Color dots */
+        .product-colors {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .color-dot:hover, .color-dot.active {
+            border-color: var(--ivory);
+            transform: scale(1.2);
+        }
+
+        /* ===== FASHION CONTENT / BLOG ===== */
+        .fashion-content {
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 26, 31, 0.5) 50%, transparent 100%);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 180, 162, 0.15);
+        }
+
+        .content-card.main {
+            grid-row: span 2;
+        }
+
+        .content-card-img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .content-card.main .content-card-img {
+            aspect-ratio: 4/3;
+        }
+
+        .content-card:hover .content-card-img {
+            transform: scale(1.03);
+        }
+
+        .content-card-body {
+            padding: 1.5rem;
+        }
+
+        .content-card-tag {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--peach);
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .content-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .content-card.main .content-card-title {
+            font-size: 1.4rem;
+        }
+
+        .content-card-excerpt {
+            font-size: 0.85rem;
+            color: rgba(245, 240, 232, 0.4);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .content-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: rgba(245, 240, 232, 0.3);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ===== BRAND STATEMENT ===== */
+        .brand-statement {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-statement::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .brand-statement blockquote {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .brand-statement blockquote .accent-cyan {
+            color: var(--cyan);
+        }
+
+        .brand-statement blockquote .accent-peach {
+            color: var(--peach);
+        }
+
+        .brand-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--peach));
+            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        .brand-statement cite {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.35);
+            font-style: normal;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3.5rem 3rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--peach), transparent);
+        }
+
+        .newsletter h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .newsletter p {
+            font-size: 0.9rem;
+            color: rgba(245, 240, 232, 0.5);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--ivory);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(245, 240, 232, 0.3);
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+        }
+
+        .newsletter-btn {
+            padding: 1rem 2rem;
+            background: var(--warm-gradient);
+            border: none;
+            border-radius: 50px;
+            color: var(--black);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 180, 162, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .nav-logo {
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: rgba(245, 240, 232, 0.4);
+            line-height: 1.7;
+            max-width: 300px;
+            font-weight: 300;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 240, 232, 0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 229, 255, 0.1);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul a {
+            color: rgba(245, 240, 232, 0.35);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            font-weight: 300;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--ivory);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(245, 240, 232, 0.25);
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.7rem;
+            color: rgba(245, 240, 232, 0.25);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--ivory);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.3); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cyan), var(--ivory));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.3);
+        }
+
+        /* ===== TRENDING BAR ===== */
+        .trending-bar {
+            overflow: hidden;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            margin: 2rem 0;
+        }
+
+        .trending-track {
+            display: flex;
+            gap: 3rem;
+            animation: marquee 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .trending-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .trending-item .dot {
+            width: 4px;
+            height: 4px;
+            background: var(--cyan);
+            border-radius: 50%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Placeholder images */
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .collections-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .collection-card.featured {
+                grid-column: span 2;
+                grid-row: span 1;
+                aspect-ratio: 16/9;
+            }
+
+            .women-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .content-card.main {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.97);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: center;
+                padding: 2rem;
+                gap: 2rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-left: 1px solid var(--glass-border);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-card.featured {
+                grid-column: span 1;
+                aspect-ratio: 3/4;
+            }
+
+            .women-imagery {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .women-img-wrapper:nth-child(2) {
+                margin-top: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-card.main {
+                grid-column: span 1;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .hero-title {
+                letter-spacing: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .women-imagery {
+                grid-template-columns: 1fr;
+            }
+
+            .women-img-wrapper:nth-child(2) {
+                margin-top: 0;
+            }
+
+            .newsletter-box {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        /* Mobile overlay */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Particle grid overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.3) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridPulse 8s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Fessionic</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#products">Featured</a></li>
+                <li><a href="#content">Journal</a></li>
+                <li><a href="#newsletter" class="nav-cta">Join Us</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <canvas id="heroCanvas"></canvas>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Season 2025 — AI Couture</p>
+            <h1 class="hero-title">
+                <span class="highlight">Fessionic</span>
+            </h1>
+            <p class="hero-tagline">
+                Designed by Intelligence. <em>Worn by Humans.</em><br>
+                Where algorithmic precision meets the warmth of self-expression.
+            </p>
+            <div class="hero-actions">
+                <a href="#collections" class="btn-primary">Explore Collections →</a>
+                <a href="#women" class="btn-secondary">Women's Edit</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Trending Bar -->
+    <div class="trending-bar">
+        <div class="trending-track" id="trendingTrack">
+            <span class="trending-item"><span class="dot"></span>Neural Draping</span>
+            <span class="trending-item"><span class="dot"></span>AI-Fit Technology</span>
+            <span class="trending-item"><span class="dot"></span>Sustainable Synthetics</span>
+            <span class="trending-item"><span class="dot"></span>Emotion-Mapped Textures</span>
+            <span class="trending-item"><span class="dot"></span>Adaptive Colorways</span>
+            <span class="trending-item"><span class="dot"></span>Bio-Responsive Fabric</span>
+            <span class="trending-item"><span class="dot"></span>Zero-Waste Patterns</span>
+            <span class="trending-item"><span class="dot"></span>Digital Twin Sizing</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="trending-item"><span class="dot"></span>Neural Draping</span>
+            <span class="trending-item"><span class="dot"></span>AI-Fit Technology</span>
+            <span class="trending-item"><span class="dot"></span>Sustainable Synthetics</span>
+            <span class="trending-item"><span class="dot"></span>Emotion-Mapped Textures</span>
+            <span class="trending-item"><span class="dot"></span>Adaptive Colorways</span>
+            <span class="trending-item"><span class="dot"></span>Bio-Responsive Fabric</span>
+            <span class="trending-item"><span class="dot"></span>Zero-Waste Patterns</span>
+            <span class="trending-item"><span class="dot"></span>Digital Twin Sizing</span>
+        </div>
+    </div>
+
+    <!-- Collections Section -->
+    <section class="section" id="collections">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Curated Categories</p>
+            <h2 class="section-title">Collections</h2>
+            <p class="section-subtitle">Precision-crafted categories, each designed with algorithmic elegance and human intuition.</p>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card featured reveal reveal-delay-1">
+                <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707998?w=800&q=80" alt="Women's Collection" class="collection-img placeholder-img">
+                <div class="collection-info">
+                    <p class="collection-tag">Primary Focus</p>
+                    <h3 class="collection-name">Women</h3>
+                    <p class="collection-count">248 Pieces</p>
+                    <div class="collection-explore">Explore Collection <span class="arrow">→</span></div>
+                </div>
+            </div>
+            <div class="collection-card reveal reveal-delay-2">
+                <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80" alt="Men's Collection" class="collection-img placeholder-img">
+                <div class="collection-info">
+                    <p class="collection-tag">Refined</p>
+                    <h3 class="collection-name">Men</h3>
+                    <p class="collection-count">186 Pieces</p>
+                    <div class="collection-explore">Explore <span class="arrow">→</span></div>
+                </div>
+            </div>
+            <div class="collection-card reveal reveal-delay-3">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80" alt="Shoes Collection" class="collection-img placeholder-img">
+                <div class="collection-info">
+                    <p class="collection-tag">Engineered</p>
+                    <h3 class="collection-name">Shoes</h3>
+                    <p class="collection-count">124 Pairs</p>
+                    <div class="collection-explore">Explore <span class="arrow">→</span></div>
+                </div>
+            </div>
+            <div class="collection-card reveal reveal-delay-4">
+                <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&q=80" alt="Accessories Collection" class="collection-img placeholder-img">
+                <div class="collection-info">
+                    <p class="collection-tag">Detailed</p>
+                    <h3 class="collection-name">Accessories</h3>
+                    <p class="collection-count">97 Items</p>
+                    <div class="collection-explore">Explore <span class="arrow">→</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar reveal">
+        <div class="stat-item">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="655">0</div>
+            <div class="stat-label">Products</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="12">0</div>
+            <div class="stat-label">AI Models</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="98">0</div>
+            <div class="stat-label">% Satisfaction</div>
+        </div>
+    </div>
+
+    <!-- Women's Fashion Focus -->
+    <section class="women-focus" id="women">
+        <div class="women-grid">
+            <div class="women-imagery reveal">
+                <div class="women-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Women's Fashion 1" class="placeholder-img">
+                </div>
+                <div class="women-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Women's Fashion 2" class="placeholder-img">
+                </div>
+            </div>
+            <div class="women-content reveal reveal-delay-2">
+                <p class="section-eyebrow">Women's Edit</p>
+                <h2>Where <span class="warm">Emotion</span> Meets Architecture</h2>
+                <p>Our women's collection is where the algorithm finds its soul. Each piece is designed with computational precision, then softened by the understanding that fashion is ultimately about how it makes you feel — powerful, gentle, alive.</p>
+                <p>Soft lighting, natural poses, and fabrics that breathe with you. This isn't just clothing; it's an extension of your inner world, made visible.</p>
+                <div class="emotion-tags">
+                    <span class="emotion-tag">Confidence</span>
+                    <span class="emotion-tag">Elegance</span>
+                    <span class="emotion-tag">Warmth</span>
+                    <span class="emotion-tag">Power</span>
+                    <span class="emotion-tag">Serenity</span>
+                    <span class="emotion-tag">Freedom</span>
+                </div>
+                <a href="#products" class="btn-primary" style="background: var(--warm-gradient);">View Women's Edit →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section" id="products">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Handpicked</p>
+            <h2 class="section-title">Featured Pieces</h2>
+            <p class="section-subtitle">Algorithmically selected. Humanly desired.</p>
+        </div>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card reveal reveal-delay-1">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&q=80" alt="Neural Drape Dress" class="product-img placeholder-img">
+                    <span class="product-badge">New</span>
+                    <button class="product-wishlist" onclick="toggleWishlist(this)">♡</button>
+                </div>
+                <div class="product-details">
+                    <p class="product-category">Women — Dresses</p>
+                    <h3 class="product-name">Neural Drape Dress</h3>
+                    <p class="product-desc">Flowing silhouette with AI-mapped pleats</p>
+                    <div class="product-colors">
+                        <span class="color-dot active" style="background: #1a1a1f;"></span>
+                        <span class="color-dot" style="background: #f5f0e8;"></span>
+                        <span class="color-dot" style="background: #c47e9e;"></span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">$289</span>
+                        <button class="product-add">+</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card reveal reveal-delay-2">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=80" alt="Graphite Overcoat" class="product-img placeholder-img">
+                    <span class="product-badge">Trending</span>
+                    <button class="product-wishlist" onclick="toggleWishlist(this)">♡</button>
+                </div>
+                <div class="product-details">
+                    <p class="product-category">Men — Outerwear</p>
+                    <h3 class="product-name">Graphite Overcoat</h3>
+                    <p class="product-desc">Structured warmth, precision cut</p>
+                    <div class="product-colors">
+                        <span class="color-dot active" style="background: #2a2a32;"></span>
+                        <span class="color-dot" style="background: #4a4a55;"></span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">$445</span>
+                        <button class="product-add">+</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card reveal reveal-delay-3">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&q=80" alt="Synth Runner" class="product-img placeholder-img">
+                    <button class="product-wishlist" onclick="toggleWishlist(this)">♡</button>
+                </div>
+                <div class="product-details">
+                    <p class="product-category">Shoes — Sneakers</p>
+                    <h3 class="product-name">Synth Runner V2</h3>
+                    <p class="product-desc">Bio-responsive cushioning system</p>
+                    <div class="product-colors">
+                        <span class="color-dot active" style="background: #f5f0e8;"></span>
+                        <span class="color-dot" style="background: #1a1a1f;"></span>
+                        <span class="color-dot" style="background: #00b8d4;"></span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">$195 <span class="original">$240</span></span>
+                        <button class="product-add">+</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card reveal reveal-delay-4">
+                <div class="product-img-container">
+                    <img src="https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?w=500&q=80" alt="Ivory Silk Blouse" class="product-img placeholder-img">
+                    <span class="product-badge">Essential</span>
+                    <button class="product-wishlist" onclick="toggleWishlist(this)">♡</button>
+                </div>
+                <div class="product-details">
+                    <p class="product-category">Women — Tops</p>
+                    <h3 class="product-name">Ivory Silk Blouse</h3>
+                    <p class="product-desc">Emotion-mapped texture, effortless drape</p>
+                    <div class="product-colors">
+                        <span class="color-dot active" style="background: #f5f0e8;"></span>
+                        <span class="color-dot" style="background: #ffb4a2;"></span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">$175</span>
+                        <button class="product-add">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Statement -->
+    <div class="brand-statement reveal">
+        <blockquote>
+            "Fashion is the <span class="accent-cyan">algorithm</span> of identity — complex, evolving, and deeply <span class="accent-peach">human</span>."
+        </blockquote>
+        <div class="brand-divider"></div>
+        <cite>— Fessionic Design Philosophy</cite>
+    </div>
+
+    <!-- Fashion Content / Journal -->
+    <section class="section fashion-content" id="content">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">The Journal</p>
+            <h2 class="section-title">Fashion Intelligence</h2>
+            <p class="section-subtitle">Styling insights, trend analysis, and the intersection of technology and taste.</p>
+        </div>
+        <div class="content-grid">
+            <div class="content-card main reveal reveal-delay-1">
+                <div style="overflow:hidden;">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="AI Fashion Trends" class="content-card-img">
+                </div>
+                <div class="content-card-body">
+                    <span class="content-card-tag">Trend Analysis</span>
+                    <h3 class="content-card-title">The Rise of AI-Curated Wardrobes: How Algorithms Are Redefining Personal Style</h3>
+                    <p class="content-card-excerpt">Explore how machine learning is moving beyond recommendations into actual garment design, creating pieces that understand your body, mood, and lifestyle in ways traditional fashion never could.</p>
+                    <div class="content-card-meta">
+                        <span>5 min read</span>
+                        <span>•</span>
+                        <span>Dec 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card reveal reveal-delay-2">
+                <div style="overflow:hidden;">
+                    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80" alt="Styling Tips" class="content-card-img">
+                </div>
+                <div class="content-card-body">
+                    <span class="content-card-tag">Styling Tips</span>
+                    <h3 class="content-card-title">5 Ways to Layer Like an Algorithm</h3>
+                    <p class="content-card-excerpt">Systematic approaches to layering that create depth and visual harmony.</p>
+                    <div class="content-card-meta">
+                        <span>3 min read</span>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card reveal reveal-delay-3">
+                <div style="overflow:hidden;">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80" alt="Sustainable Fashion" class="content-card-img">
+                </div>
+                <div class="content-card-body">
+                    <span class="content-card-tag">Sustainability</span>
+                    <h3 class="content-card-title">Zero-Waste Pattern Design: The Future Is Calculated</h3>
+                    <p class="content-card-excerpt">How computational design eliminates fabric waste entirely.</p>
+                    <div class="content-card-meta">
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-box reveal">
+            <h3>Join the Intelligence</h3>
+            <p>Subscribe to receive curated fashion insights, early access, and AI-driven style recommendations.</p>
+            <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">Fessionic</a>
+                    <p>Designed by Intelligence. Worn by Humans. We bridge the gap between algorithmic precision and the warmth of human expression through fashion.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter/X">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Pinterest">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20l4-9"/><path d="M10.7 14c.437 1.263 1.43 2 2.55 2 2.071 0 3.75-1.554 3.75-4a5 5 0 1 0-9.7 1.7"/><circle cx="12" cy="12" r="10"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <ul>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Shoes</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">AI Fit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Fessionic. All rights reserved. Crafted with AI precision & human care.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== NAVIGATION =====
+        const nav = document.getElementById('mainNav');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        // Scroll behavior
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('open');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ===== REVEAL ON SCROLL =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== COUNTER ANIMATION =====
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let counted = false;
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counted) {
+                    counted = true;
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.dataset.target);
+                        const increment = target / 60;
+                        let current = 0;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                stat.textContent = target + (stat.parentElement.querySelector('.stat-label').textContent.includes('%') ? '%' : '+');
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = Math.floor(current);
+                            }
+                        }, 30);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelector('.stats-bar') && counterObserver.observe(document.querySelector('.stats-bar'));
+
+        // ===== WISHLIST TOGGLE =====
+        function toggleWishlist(btn) {
+            btn.classList.toggle('active');
+            btn.innerHTML = btn.classList.contains('active') ? '♥' : '♡';
+            btn.style.color = btn.classList.contains('active') ? '#e8a0bf' : '';
+        }
+
+        // ===== NEWSLETTER =====
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const btn = e.target.querySelector('button');
+            btn.textContent = '✓ Subscribed';
+            btn.style.background = 'linear-gradient(135deg, #00e5ff, #00b8d4)';
+            input.value = '';
+            setTimeout(() => {
+                btn.textContent = 'Subscribe';
+                btn.style.background = '';
+            }, 3000);
+        }
+
+        // ===== COLOR DOT SELECTION =====
+        document.querySelectorAll('.product-colors').forEach(container => {
+            container.querySelectorAll('.color-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    container.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+                    dot.classList.add('active');
+                });
+            });
+        });
+
+        // ===== HERO CANVAS - Particle Network =====
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                // Random color between cyan and peach
+                this.color = Math.random() > 0.7 ? 'rgba(255, 180, 162,' : 'rgba(0, 229, 255,';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+
+                // Mouse interaction
+                if (mouse.x !== null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        this.x -= dx * 0.002;
+                        this.y -= dy * 0.002;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + this.opacity + ')';
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 120);
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        const opacity = (1 - dist / 120) * 0.12;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 229, 255, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            connectParticles();
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        // Pause animation when not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationId);
+            } else {
+                animateParticles();
+            }
+        });
+
+        // ===== PRODUCT ADD TO CART ANIMATION =====
+        document.querySelectorAll('.product-add').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.innerHTML = '✓';
+                this.style.background = 'var(--cyan)';
+                this.style.color = 'var(--black)';
+                this.style.borderColor = 'var(--cyan)';
+                setTimeout(() => {
+                    this.innerHTML = '+';
+                    this.style.background = '';
+                    this.style.color = '';
+                    this.style.borderColor = '';
+                }, 1500);
+            });
+        });
+
+        // ===== COLLECTION CARD TILT EFFECT =====
+        document.querySelectorAll('.collection-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 40;
+                const rotateY = (centerX - x) / 40;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>
